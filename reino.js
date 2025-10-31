@@ -1,23 +1,59 @@
-import { Personaje } from "./personaje";
+import { Personaje } from "./personaje.js";
 
 export class Reino {
     #nombre;
     #rey;
-    #casa;
+    #reinos = [
+        "El Reino del Norte",
+        "El Valle de Arryn",
+        "Las Tierras del Oeste",
+        "El Dominio",
+        "Las Tierras de los Ríos",
+        "Dorne",
+        "Las Islas del Hierro",
+        "Las Tierras de la Tormenta",
+        "Las Tierras de la Corona"
+        ];
 
-    constructor(nombre = "", rey = {}, casa = []){
-        this.#nombre = nombre;
-        this.#rey = rey;
-        this.#casa = casa;
+    constructor(nombre = "", personaje){
+        if(!this.validarNombreReino(nombre)){
+            console.log("Reino no valido");
+        } else {
+            this.#nombre = nombre;
+        } 
+        if(personaje instanceof Personaje) {
+            this.#rey = personaje;
+        }
+        
+    }
+    validarNombreReino(nombreReino){
+        return this.#reinos.includes(nombreReino);
     }
 
     set nombre(valor){
-        this.#nombre = valor;
+        if(this.validarNombreReino(valor)){
+            this.#nombre = valor;
+        }else{
+            console.log("Nombre de reino no valido");
+        }
     }
 
-    agregarRey(personaje){
+    set rey(personaje){
         if(personaje instanceof Personaje){
-
+            this.#rey = personaje;
         }
+    }
+
+    get nombre(){
+        return this.#nombre;
+    }
+
+    get rey(){
+        return this.#rey;
+    }
+
+    visualizarRey(){
+        console.log("Reino de " + this.#nombre);
+        console.log("Regente: ", this.#rey);     
     }
 }

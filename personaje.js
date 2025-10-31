@@ -5,11 +5,16 @@ export class Personaje {
     #vivo;
     #casa;
 
-    constructor(nombre = "", age = 0, vivo = true, casa = new Casa()) {
+    constructor(nombre = "", age = 0, vivo = true, casa = "") {
         this.#nombre = nombre;
         this.#age = age;
         this.#vivo = vivo;
-        this.#casa = casa;
+
+        if (!Casa.validaNombreCasa(casa)){
+            console.log(`${casa} no es una casa valida en juego de tronos`);
+        }else{
+            this.#casa = casa;
+        }
     }
 
     set nombre(valor) {
@@ -17,13 +22,28 @@ export class Personaje {
     }
 
     set age(valor) {
-        this.#age = valor;
+        if(valor > 0){
+            this.#age = valor;
+        } else {
+            console.log("La edad no puede ser un valor negativo");
+        }
     }
 
     set vivo(valor) {
-        this.#vivo = valor;
+        this.#vivo = Boolean(valor);
     }
 
+    set casa(valor){
+        if(Casa.validaNombreCasa(valor)){
+            this.#casa = valor;
+        } else {
+            console.log("La casa no es valida");
+        }
+    }
+
+    get nombre(){
+        return this.#nombre;
+    }
     get age(){
         return this.#age;
     }
