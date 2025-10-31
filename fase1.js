@@ -1,19 +1,41 @@
-import { Casa } from "./casa.js";
-import { Personaje } from "./personaje.js";
-import { Reino } from "./reino.js";
+import { Casa } from "./clases/casa.js";
+import { Personaje } from "./clases/personaje.js";
+import { Reino } from "./clases/reino.js";
+import { Arma } from "./clases/arma.js";
 
-const casaStark = new Casa("Casa Stark", "Winter is Coming");
+const poniente = new Reino();
+poniente.nombre = "El reino de Poniente";
+console.log(poniente.nombre);
 
-const ned = new Personaje("Eddard Stark", 40, false, "Casa Stark");
-const arya = new Personaje("Arya Stark", 16, true, "Casa Stark");
+poniente.agregarCasa("Casa Stark");
+poniente.agregarCasa("Casa Lannister")
+
+const garra = new Arma("Garra", 25, "Espada");
 const jon = new Personaje("Jon Snow", 23, true, "Casa Stark");
+jon.arma = garra;
 
-casaStark.agregarMiembro(ned);
-casaStark.agregarMiembro(arya);
-casaStark.agregarMiembro(jon);
+const aguja = new Arma("Aguja", 15, "Estilete")
+const arya = new Personaje("Arya Stark", 16, true, "Casa Stark");
+arya.arma = aguja;
 
-casaStark.visualizarMiembros();
+const jaime = new Personaje("Jaime Lannister", 25, true, "Casa Lannister");
 
-const rey = new Reino("Dorne", ned);
+poniente.rey = jaime;
+poniente.visualizarRey();
 
-rey.visualizarRey();
+poniente.visualizarCasas();
+
+const stark = new Casa("Casa Stark", "Winter is coming");
+stark.agregarMiembro(jon);
+stark.agregarMiembro(arya);
+stark.visualizarMiembros();
+
+console.log("Presentaciones");
+jon.saludo();
+arya.saludo();
+jaime.saludo();
+
+console.log("Armas: ");
+console.log(garra.nombre, garra.daño, garra.tipo);
+console.log(`Nombre: ${aguja.nombre} (${aguja.tipo}) - Daño: ${aguja.daño}`);
+
