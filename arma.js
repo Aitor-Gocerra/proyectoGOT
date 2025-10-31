@@ -14,7 +14,12 @@ export class Arma {
     }
 
     set daño(valor){
-        this.#daño = valor;
+        if(valor < 0){
+            console.log("El daño no puede ser negativo");
+        }else{
+            this.#daño = valor;
+        }   
+        
     }
 
     set tipo(valor){
@@ -25,5 +30,12 @@ export class Arma {
         return this.#nombre;
     }
 
+    get daño(){
+        return this.#daño;
+    }
+
+    get tipo(){
+        return this.#tipo;
+    }
     
 }

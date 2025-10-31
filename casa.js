@@ -4,6 +4,7 @@ export class Casa {
     #nombre;
     #lema;
     #miembros;
+
     static casasValidas = [
         "Casa Stark",
         "Casa Lannister",
@@ -29,7 +30,7 @@ export class Casa {
 
 
     constructor (nombre = "", lema = "", miembros = []){
-        if(!Casa.validaNombreCasa(nombre)){
+        if(nombre && !Casa.validaNombreCasa(nombre)){
             console.log(`${nombre} no es una casa validad en GOT`);
         }else{
             this.#nombre = nombre;

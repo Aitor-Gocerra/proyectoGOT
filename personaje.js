@@ -1,14 +1,18 @@
 import { Casa } from "./casa.js";
+import { Arma } from "./arma.js";
+
 export class Personaje {
     #nombre;
     #age;
     #vivo;
     #casa;
+    #arma;
 
-    constructor(nombre = "", age = 0, vivo = true, casa = "") {
+    constructor(nombre = "", age = 0, vivo = true, casa = "", arma="") {
         this.#nombre = nombre;
         this.#age = age;
         this.#vivo = vivo;
+        this.#arma = arma;
 
         if (!Casa.validaNombreCasa(casa)){
             console.log(`${casa} no es una casa valida en juego de tronos`);
@@ -41,6 +45,17 @@ export class Personaje {
         }
     }
 
+    set arma(weapon){
+        if(weapon instanceof Arma){
+            this.#arma = weapon;
+            console.log(`${this.#nombre} se ha equipado ${weapon.nombre}`);
+        }else{
+            console.log("ERROR FATAL");
+        }
+        
+        
+    }
+
     get nombre(){
         return this.#nombre;
     }
@@ -56,6 +71,6 @@ export class Personaje {
     }
 
     saludo() {
-        console.log(`Hola, soy ${this.#nombre} de la casa ${this.#casa}`);
+        console.log(`Soy ${this.#nombre} de la casa ${this.#casa}`);
     }
 }
