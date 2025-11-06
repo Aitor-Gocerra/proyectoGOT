@@ -1,4 +1,3 @@
-import { Casa } from "./clases/casa.js";
 import { Personaje } from "./clases/Personaje/personaje.js";
 import { Reino } from "./clases/reino.js";
 import { Arma } from "./clases/arma.js";
