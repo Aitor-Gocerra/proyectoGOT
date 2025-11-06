@@ -8,15 +8,24 @@ export class Personaje {
     #casa;
     #arma;
 
+    static reinoActual = null; // Variable estática para guardar el reino
+
     constructor(nombre = "", age = 0, vivo = true, casa = "", arma="") {
         this.#nombre = nombre;
         this.#age = age;
         this.#vivo = vivo;
         this.#arma = arma;
-
-        if (!Casa.validaNombreCasa(casa)){
-            console.log(`${casa} no es una casa valida en juego de tronos`);
-        }else{
+        
+        // Validar contra el reino estático
+        if(Personaje.reinoActual) {
+            const casaExiste = Personaje.reinoActual.casas.includes(casa);
+            if(casaExiste) {
+                this.#casa = casa;
+            } else {
+                console.log(`Error: "${casa}" no existe en ${Personaje.reinoActual.nombre}`);
+                this.#casa = "";
+            }
+        } else {
             this.#casa = casa;
         }
     }
@@ -38,11 +47,7 @@ export class Personaje {
     }
 
     set casa(valor){
-        if(Casa.validaNombreCasa(valor)){
-            this.#casa = valor;
-        } else {
-            console.log("La casa no es valida");
-        }
+        this.#casa = valor;
     }
 
     set arma(weapon){

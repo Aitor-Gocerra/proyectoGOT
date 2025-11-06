@@ -7,6 +7,8 @@ const poniente = new Reino();
 poniente.nombre = "El reino de Poniente";
 console.log(poniente.nombre);
 
+Personaje.reinoActual = poniente;
+
 poniente.agregarCasa("Casa Stark");
 poniente.agregarCasa("Casa Lannister")
 
