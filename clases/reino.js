@@ -1,14 +1,15 @@
-import { Personaje } from "./personaje.js";
+
+import { Rey } from "./Personaje/Especiales/rey.js";
 
 export class Reino {
     #nombre;
     #rey;
     #casas;
 
-    constructor(nombre = "", personaje = {}, casas = []){
+    constructor(nombre = "", rey = null, casas = []){
         this.#nombre = nombre;
-        if(personaje instanceof Personaje) {
-            this.#rey = personaje.nombre;
+        if(rey instanceof Rey) {
+            this.#rey = rey;
         }   
         this.#casas = casas;
     }
@@ -17,9 +18,9 @@ export class Reino {
         this.#nombre = valor;
     }
 
-    set rey(personaje){
-        if(personaje instanceof Personaje){
-            this.#rey = personaje.nombre;
+    set rey(rey){
+        if(rey instanceof Rey){
+            this.#rey = rey;
         }
     }
 

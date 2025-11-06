@@ -1,4 +1,4 @@
-import { Personaje } from "./personaje.js";
+import { Personaje } from "./Personaje/personaje.js";
 
 export class Casa {
     #nombre;

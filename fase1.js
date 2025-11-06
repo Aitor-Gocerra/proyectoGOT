@@ -1,5 +1,5 @@
 import { Casa } from "./clases/casa.js";
-import { Personaje } from "./clases/personaje.js";
+import { Personaje } from "./clases/Personaje/personaje.js";
 import { Reino } from "./clases/reino.js";
 import { Arma } from "./clases/arma.js";
 
@@ -10,7 +10,7 @@ console.log(poniente.nombre);
 Personaje.reinoActual = poniente;
 
 poniente.agregarCasa("Casa Stark");
-poniente.agregarCasa("Casa Lannister")
+poniente.agregarCasa("Casa Lannister");
 
 const garra = new Arma("Garra", 25, "Espada");
 const jon = new Personaje("Jon Snow", 23, true, "Casa Stark");

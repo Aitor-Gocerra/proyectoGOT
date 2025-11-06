@@ -1,20 +1,15 @@
-import { Casa } from "./casa.js";
-import { Arma } from "./arma.js";
-
 export class Personaje {
     #nombre;
     #age;
     #vivo;
     #casa;
-    #arma;
-
+    
     static reinoActual = null; // Variable estática para guardar el reino
 
-    constructor(nombre = "", age = 0, vivo = true, casa = "", arma="") {
+    constructor(nombre = "", age = 0, vivo = true, casa = "") {
         this.#nombre = nombre;
         this.#age = age;
         this.#vivo = vivo;
-        this.#arma = arma;
         
         // Validar contra el reino estático
         if(Personaje.reinoActual) {
@@ -48,17 +43,6 @@ export class Personaje {
 
     set casa(valor){
         this.#casa = valor;
-    }
-
-    set arma(weapon){
-        if(weapon instanceof Arma){
-            this.#arma = weapon;
-            console.log(`${this.#nombre} se ha equipado ${weapon.nombre}`);
-        }else{
-            console.log("ERROR FATAL");
-        }
-        
-        
     }
 
     get nombre(){
