@@ -6,13 +6,16 @@ export class Batalla {
 
     iniciarBatalla (casaA, casaB){
 
+        let guerrerosCasaA = [];
+        let guerrerosCasaB = [];
+
         if(casaA.esAliada(casaB)){
             console.log("Ambas casas son aliadas, no pueden luchar entre ellas");
         }else{
 
             if(casaA instanceof Casa && casaB instanceof Casa){
-                let guerrerosCasaA = casaA.guerrerosDisponibles();
-                let guerrerosCasaB = casaB.guerrerosDisponibles();
+                guerrerosCasaA = casaA.guerrerosDisponibles();
+                guerrerosCasaB = casaB.guerrerosDisponibles();
             }
 
             while(guerrerosCasaA.length > 0 && guerrerosCasaB.length > 0){
@@ -20,21 +23,24 @@ export class Batalla {
                 const guerreroA = guerrerosCasaA[0];
                 const guerreroB = guerrerosCasaB[0];
 
-                guerreroA.ataca(guerreroB);
+                if(guerreroA.nivel >= guerreroB.nivel){
 
-                if (guerreroB.vida <= 0) {
-                    this.#guerrerosMuertos.push(guerreroB);
-                    guerrerosCasaB.shift(); 
-                }else{
-                    guerreroB.ataca(guerreroA);
+                     guerreroA.ataca(guerreroB);
+
+                    if (guerreroB.vida <= 0) {
+                        this.#guerrerosMuertos.push(guerreroB);
+                        guerreroA.experiencia();
+                        guerrerosCasaB.shift(); 
+                    }else{
+                        guerreroB.ataca(guerreroA);
+                    }
+
+                    if (guerreroA.vida <= 0) {
+                        this.#guerrerosMuertos.push(guerreroA);
+                        guerrerosCasaA.shift(); 
+                    }
                 }
-
-                if (guerreroA.vida <= 0) {
-                    this.#guerrerosMuertos.push(guerreroA);
-                    guerrerosCasaA.shift(); 
-                }
-
-                
+               
             }
 
             if (guerrerosCasaA.length > 0) {
