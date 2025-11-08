@@ -6,15 +6,15 @@ export class Batalla {
 
     iniciarBatalla (casaA, casaB){
 
-        const guerrerosCasaA = [];
-        const guerrerosCasaB = [];
+        let guerrerosCasaA = [];
+        let guerrerosCasaB = [];
 
         if(casaA instanceof Casa){
             guerrerosCasaA = casaA.miembros.filter(miembro => miembro instanceof Guerrero);
         }
         
         if(casaB instanceof Casa){
-            guerrerosCasaA = casaB.miembros.filter(miembro => miembro instanceof Guerrero);
+            guerrerosCasaB = casaB.miembros.filter(miembro => miembro instanceof Guerrero);
         }
 
         while(guerrerosCasaA.length > 0 && guerrerosCasaB.length > 0){

@@ -1,4 +1,3 @@
-
 import { Rey } from "./Personaje/Especiales/rey.js";
 
 export class Reino {

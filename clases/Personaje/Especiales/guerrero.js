@@ -1,5 +1,5 @@
-import { Personaje } from "../personaje";
-import { Arma } from "../../arma";
+import { Personaje } from "../personaje.js";
+import { Arma } from "../../arma.js";
 
 export class Guerrero extends Personaje{
     #arma;
@@ -26,14 +26,6 @@ export class Guerrero extends Personaje{
 
     get arma(){
         return this.#arma;
-    }
-
-    atacar(){
-        if(this.#arma){
-            console.log(`${this.nombre} ataca con ${this.#arma.nombre} causando ${this.#arma.daño} de daño`);
-        } else {
-            console.log(`${this.nombre} no tiene arma equipada`);
-        }
     }
 
     entrenar(){

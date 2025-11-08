@@ -26,7 +26,7 @@ export class Casa {
     get lema(){
         return this.#lema;
     }
-    get arrayMiembros(){
+    get miembros(){
         return this.#miembros;
     }
 

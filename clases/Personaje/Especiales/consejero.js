@@ -1,5 +1,5 @@
-import { Personaje } from "../personaje";
-import { Rey } from "./rey";
+import { Personaje } from "../personaje.js";
+import { Rey } from "./rey.js";
 
 export class Consejero extends Personaje{
     #especialidad;
