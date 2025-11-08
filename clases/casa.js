@@ -1,14 +1,17 @@
 import { Personaje } from "./Personaje/personaje.js";
+import { Guerrero } from "./Personaje/Especiales/guerrero.js";
 
 export class Casa {
     #nombre;
     #lema;
     #miembros;
+    #alianzas;
 
-    constructor (nombre = "", lema = "", miembros = []){  
+    constructor (nombre = "", lema = ""){  
         this.#nombre = nombre;
         this.#lema = lema;
-        this.#miembros = miembros;
+        this.#miembros = [];
+        this.#alianzas = [];
     }
 
     set nombre(valor){
@@ -28,6 +31,10 @@ export class Casa {
     }
     get miembros(){
         return this.#miembros;
+    }
+    
+    get alianzas(){
+        return this.#alianzas;
     }
 
     agregarMiembro(personaje){
@@ -57,5 +64,52 @@ export class Casa {
             });
         }
         
+    }
+
+    formarAlianza(otraCasa){
+
+        if(otraCasa instanceof Casa){
+            if(this.#nombre === otraCasa.nombre){
+                console.log(`La casa ${this.#nombre} no puede formar una alianza consigo misma`);
+            }
+            if(this.esAliada(otraCasa)){
+                console.log(`La casa ${this.#nombre} ya es aliada`);
+            }
+            this.#alianzas.push(otraCasa);
+            otraCasa.#alianzas.push(this);
+        }
+    }
+
+    romperAlianza(otraCasa){
+        if(!this.esAliada(otraCasa)){
+            console.log(`No existe alianza entre casas`);
+        }
+
+        this.#alianzas = this.#alianzas.filter(casa => casa != otraCasa);
+        otraCasa.#alianzas = otraCasa.#alianzas.filter(casa => casa != this);
+    }
+
+    esAliada(otraCasa) {
+        return this.#alianzas.includes(otraCasa);
+    }
+
+    mostrarAlianzas(){
+        console.log(`Alianzas de la Casa ${this.nombre}`);
+
+        this.alianzas.forEach(casa => {
+            console.log(` - Casa ${casa.nombre}: "${casa.lema}"`);            
+        })
+        
+    }
+
+    guerrerosDisponibles(){
+        let guerreros = this.#miembros.filter(miembro => miembro instanceof Guerrero && miembro.vivo);
+
+        this.#alianzas.forEach(casaAliada =>{
+            const guerrerosAliados = casaAliada.#miembros.filter(miembro => miembro instanceof Guerrero && miembro.vivo);
+            guerreros = guerreros.concat(guerrerosAliados);
+        })
+
+        return guerreros;
     }
 }

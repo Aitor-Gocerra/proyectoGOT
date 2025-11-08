@@ -6,45 +6,46 @@ export class Batalla {
 
     iniciarBatalla (casaA, casaB){
 
-        let guerrerosCasaA = [];
-        let guerrerosCasaB = [];
+        if(casaA.esAliada(casaB)){
+            console.log("Ambas casas son aliadas, no pueden luchar entre ellas");
+        }else{
 
-        if(casaA instanceof Casa){
-            guerrerosCasaA = casaA.miembros.filter(miembro => miembro instanceof Guerrero);
+            if(casaA instanceof Casa && casaB instanceof Casa){
+                let guerrerosCasaA = casaA.guerrerosDisponibles();
+                let guerrerosCasaB = casaB.guerrerosDisponibles();
+            }
+
+            while(guerrerosCasaA.length > 0 && guerrerosCasaB.length > 0){
+            
+                const guerreroA = guerrerosCasaA[0];
+                const guerreroB = guerrerosCasaB[0];
+
+                guerreroA.ataca(guerreroB);
+
+                if (guerreroB.vida <= 0) {
+                    this.#guerrerosMuertos.push(guerreroB);
+                    guerrerosCasaB.shift(); 
+                }else{
+                    guerreroB.ataca(guerreroA);
+                }
+
+                if (guerreroA.vida <= 0) {
+                    this.#guerrerosMuertos.push(guerreroA);
+                    guerrerosCasaA.shift(); 
+                }
+
+                
+            }
+
+            if (guerrerosCasaA.length > 0) {
+                console.log(`La casa ${casaA.nombre} gana la batalla.`);
+            } else if (guerrerosCasaB.length > 0) {
+                console.log(`La casa ${casaB.nombre} gana la batalla.`);
+            } else {
+                console.log("¡Ambas casas han caído en combate!");
+            }
         }
         
-        if(casaB instanceof Casa){
-            guerrerosCasaB = casaB.miembros.filter(miembro => miembro instanceof Guerrero);
-        }
-
-        while(guerrerosCasaA.length > 0 && guerrerosCasaB.length > 0){
-            
-            const guerreroA = guerrerosCasaA[0];
-            const guerreroB = guerrerosCasaB[0];
-
-            guerreroA.ataca(guerreroB);
-            guerreroB.ataca(guerreroA);
-
-            if (guerreroA.vida <= 0) {
-                this.#guerrerosMuertos.push(guerreroA);
-                console.log(`${guerreroA.nombre} ha muerto`);
-                guerrerosCasaA.shift(); 
-            }
-
-            if (guerreroB.vida <= 0) {
-                this.#guerrerosMuertos.push(guerreroB);
-                console.log(`${guerreroB.nombre} ha muerto`);
-                guerrerosCasaB.shift(); 
-            }
-        }
-
-        if (guerrerosCasaA.length > 0) {
-            console.log(`La casa ${casaA.nombre} gana la batalla.`);
-        } else if (guerrerosCasaB.length > 0) {
-            console.log(`La casa ${casaB.nombre} gana la batalla.`);
-        } else {
-            console.log("¡Ambas casas han caído en combate!");
-        }
     }
 
     mostrarGuerrerosMuertosEnCombate(){

@@ -27,6 +27,9 @@ export class Guerrero extends Personaje{
     get arma(){
         return this.#arma;
     }
+    get vida(){
+        return this.#vida;
+    }
 
     entrenar(){
         console.log(`${this.nombre} se entrena sin descanso para la proxima batalla.`);   
@@ -44,7 +47,7 @@ export class Guerrero extends Personaje{
         }
     }
 
-    atacar(objetivo){
+    ataca(objetivo){
         const daño = Math.floor(this.#arma.daño * (0.7 + Math.random() * 0.6));
         console.log(`${this.nombre} ataca a ${objetivo.nombre} causando ${daño} puntos de vida.`);
         objetivo.recibirDaño(daño);
