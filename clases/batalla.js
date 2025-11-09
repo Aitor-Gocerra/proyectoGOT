@@ -25,11 +25,11 @@ export class Batalla {
 
                 if(guerreroA.nivel >= guerreroB.nivel){
 
-                     guerreroA.ataca(guerreroB);
+                    guerreroA.ataca(guerreroB);
 
                     if (guerreroB.vida <= 0) {
                         this.#guerrerosMuertos.push(guerreroB);
-                        guerreroA.experiencia();
+                        guerreroA.ganarExperiencia();
                         guerrerosCasaB.shift(); 
                     }else{
                         guerreroB.ataca(guerreroA);
@@ -39,14 +39,33 @@ export class Batalla {
                         this.#guerrerosMuertos.push(guerreroA);
                         guerrerosCasaA.shift(); 
                     }
+                }else{
+                    guerreroB.ataca(guerreroA);
+
+                    if (guerreroA.vida <= 0) {
+                        this.#guerrerosMuertos.push(guerreroA);
+                        guerreroB.ganarExperiencia();
+                        guerrerosCasaA.shift(); 
+                    }else{
+                        guerreroA.ataca(guerreroB);
+                    }
+
+                    if (guerreroB.vida <= 0) {
+                        this.#guerrerosMuertos.push(guerreroB);
+                        guerrerosCasaB.shift(); 
+                    }
                 }
                
             }
 
             if (guerrerosCasaA.length > 0) {
-                console.log(`La casa ${casaA.nombre} gana la batalla.`);
+                casaA.oro += casaB.oro;
+                casaB.oro = 0;
+                console.log(`La casa ${casaA.nombre} gana la batalla y todo el oro de ${casaB.nombre}.`);
             } else if (guerrerosCasaB.length > 0) {
-                console.log(`La casa ${casaB.nombre} gana la batalla.`);
+                casaB.oro += casaA.oro;
+                casaA.oro = 0;
+                console.log(`La casa ${casaB.nombre} gana la batalla y todo el oro de ${casaA.nombre}.`);
             } else {
                 console.log("¡Ambas casas han caído en combate!");
             }

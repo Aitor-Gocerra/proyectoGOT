@@ -36,7 +36,7 @@ export class Reino {
     }
 
     agregarCasa(casa){
-        const existeCasa = this.#casas.some(apellido => apellido.nombre === casa)
+        const existeCasa = this.#casas.some(apellido => apellido.nombre === casa.nombre)
 
         if(existeCasa){
             console.log("La casa ya esta añadida");

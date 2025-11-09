@@ -6,12 +6,16 @@ export class Casa {
     #lema;
     #miembros;
     #alianzas;
+    #oro;
+    #provisiones;
 
-    constructor (nombre = "", lema = ""){  
+    constructor (nombre = "", lema = "", oro = 0, provisiones = 0){  
         this.#nombre = nombre;
         this.#lema = lema;
         this.#miembros = [];
         this.#alianzas = [];
+        this.#oro = oro;
+        this.#provisiones = provisiones
     }
 
     set nombre(valor){
@@ -20,6 +24,14 @@ export class Casa {
 
     set lema(valor){
         this.#lema = valor;
+    }
+
+    set provisiones(valor){
+        this.#provisiones = valor;
+    }
+
+    set oro(valor){
+        this.#oro = valor;
     }
 
     get nombre(){
@@ -35,6 +47,14 @@ export class Casa {
     
     get alianzas(){
         return this.#alianzas;
+    }
+
+    get provisiones(){
+        return this.#provisiones;
+    }
+
+    get oro(){
+        return this.#oro;
     }
 
     agregarMiembro(personaje){
@@ -104,9 +124,15 @@ export class Casa {
 
     guerrerosDisponibles(){
         let guerreros = this.#miembros.filter(miembro => miembro instanceof Guerrero && miembro.vivo);
+        while(guerreros.length * 100 > this.#oro){
+            guerreros.pop();
+        }
 
         this.#alianzas.forEach(casaAliada =>{
             const guerrerosAliados = casaAliada.#miembros.filter(miembro => miembro instanceof Guerrero && miembro.vivo);
+            while(guerrerosAliados.length * 100 > this.#oro){
+                guerrerosAliados.pop();
+            }
             guerreros = guerreros.concat(guerrerosAliados);
         })
 

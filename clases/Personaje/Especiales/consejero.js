@@ -11,7 +11,7 @@ export class Consejero extends Personaje{
     }
 
     atacar(){
-        console.log(`${this.nombre} no lucha con armas, si no con palagras e inteligencia`);
+        console.log(`${this.nombre} no lucha con armas, si no con palabras e inteligencia`);
     }
 
     aconsejar(rey){

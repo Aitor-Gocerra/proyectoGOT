@@ -63,7 +63,7 @@ export class Guerrero extends Personaje{
         objetivo.recibirDaño(daño);
     }
 
-    experiencia(){
+    ganarExperiencia(){
         const experiencia = Math.floor(Math.random() * 101);
         const nivelAnterior = this.#nivel;  
         this.#experiencia += experiencia;
