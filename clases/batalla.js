@@ -33,11 +33,11 @@ export class Batalla {
                         guerrerosCasaB.shift(); 
                     }else{
                         guerreroB.ataca(guerreroA);
-                    }
 
-                    if (guerreroA.vida <= 0) {
-                        this.#guerrerosMuertos.push(guerreroA);
-                        guerrerosCasaA.shift(); 
+                        if (guerreroA.vida <= 0) {
+                            this.#guerrerosMuertos.push(guerreroA);
+                            guerrerosCasaA.shift(); 
+                        }
                     }
                 }else{
                     guerreroB.ataca(guerreroA);
@@ -48,14 +48,13 @@ export class Batalla {
                         guerrerosCasaA.shift(); 
                     }else{
                         guerreroA.ataca(guerreroB);
-                    }
 
-                    if (guerreroB.vida <= 0) {
-                        this.#guerrerosMuertos.push(guerreroB);
-                        guerrerosCasaB.shift(); 
+                        if (guerreroB.vida <= 0) {
+                            this.#guerrerosMuertos.push(guerreroB);
+                            guerrerosCasaB.shift(); 
+                        }
                     }
                 }
-               
             }
 
             if (guerrerosCasaA.length > 0) {
