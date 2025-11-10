@@ -71,12 +71,12 @@ export class Casa {
         if(otraCasa instanceof Casa){
             if(this.#nombre === otraCasa.nombre){
                 console.log(`La casa ${this.#nombre} no puede formar una alianza consigo misma`);
-            }
-            if(this.esAliada(otraCasa)){
+            }else if(this.esAliada(otraCasa)){
                 console.log(`La casa ${this.#nombre} ya es aliada`);
+            }else{
+                this.#alianzas.push(otraCasa);
+                otraCasa.#alianzas.push(this);
             }
-            this.#alianzas.push(otraCasa);
-            otraCasa.#alianzas.push(this);
         }
     }
 
