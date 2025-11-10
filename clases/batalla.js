@@ -1,5 +1,4 @@
 import { Casa } from "./casa.js";
-import { Guerrero } from "./Personaje/Especiales/guerrero.js";
 
 export class Batalla {
     #guerrerosMuertos = [];

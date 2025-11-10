@@ -8,6 +8,7 @@ export class Rey extends Personaje{
         super(nombre, age, vivo, casa);
         
         this.#añosReinado = añosReinado;
+        
     }
 
     set añosReinado(valor){
