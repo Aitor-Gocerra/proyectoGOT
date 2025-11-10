@@ -22,19 +22,24 @@ export class Batalla {
             const guerreroA = guerrerosCasaA[0];
             const guerreroB = guerrerosCasaB[0];
 
+            // Guerrero A ataca
             guerreroA.ataca(guerreroB);
-            guerreroB.ataca(guerreroA);
-
-            if (guerreroA.vida <= 0) {
-                this.#guerrerosMuertos.push(guerreroA);
-                console.log(`${guerreroA.nombre} ha muerto`);
-                guerrerosCasaA.shift(); 
-            }
-
+            
+            // Verificar si guerrero B murió
             if (guerreroB.vida <= 0) {
                 this.#guerrerosMuertos.push(guerreroB);
                 console.log(`${guerreroB.nombre} ha muerto`);
-                guerrerosCasaB.shift(); 
+                guerrerosCasaB.shift();
+                continue; // Pasar al siguiente turno
+            }else{
+                guerreroB.ataca(guerreroA);
+                
+                // Verificar si guerrero A murió
+                if (guerreroA.vida <= 0) {
+                    this.#guerrerosMuertos.push(guerreroA);
+                    console.log(`${guerreroA.nombre} ha muerto`);
+                    guerrerosCasaA.shift();
+                }
             }
         }
 
