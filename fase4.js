@@ -6,10 +6,10 @@ import { Consejero } from "./clases/Personaje/Especiales/consejero.js";
 import { Batalla } from "./clases/batalla.js";
 
 // ===== CREAR CASAS =====
-const casaStark = new Casa("Stark", "Se acerca el invierno");
-const casaLannister = new Casa("Lannister", "Oye mi rugido");
-const casaTargaryen = new Casa("Targaryen", "Fuego y Sangre");
-const casaBaratheon = new Casa("Baratheon", "Nuestra es la furia");
+const casaStark = new Casa("Stark", "Se acerca el invierno", 1263);
+const casaLannister = new Casa("Lannister", "Oye mi rugido", 7263);
+const casaTargaryen = new Casa("Targaryen", "Fuego y Sangre", 100);
+const casaBaratheon = new Casa("Baratheon", "Nuestra es la furia", 4832);
 
 // ===== CREAR ARMAS =====
 const espadaLargo = new Arma("Garra", 25, "Espada");

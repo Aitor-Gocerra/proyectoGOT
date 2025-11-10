@@ -136,6 +136,8 @@ export class Casa {
             guerreros = guerreros.concat(guerrerosAliados);
         })
 
+        this.#oro -= guerreros.length * 100;
+        
         return guerreros;
     }
 }
