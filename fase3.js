@@ -18,6 +18,7 @@ const lanzaDeCaza = new Arma("Lanza de Casa", 60);
 
 // === GUERREROS DE LA CASA STARK ===
 
+
 const jon = new Guerrero("Jon Snow", 25, true, "Stark", garra);
 const arya = new Guerrero("Arya Stark", 18, true, "Stark", aguja);
 const robb = new Guerrero("Robb Stark", 22, false, "Stark", espadaLarga);
