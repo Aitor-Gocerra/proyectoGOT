@@ -1,4 +1,5 @@
 import { Personaje } from "./Personaje/personaje.js";
+import { Guerrero } from "./Personaje/Especiales/guerrero.js";
 
 export class Casa {
     #nombre;
@@ -57,5 +58,11 @@ export class Casa {
             });
         }
         
+    }
+
+    guerrerosDisponibles(){
+        let guerreros = this.#miembros.filter(miembro => miembro instanceof Guerrero && miembro.vivo);
+
+        return guerreros;
     }
 }
