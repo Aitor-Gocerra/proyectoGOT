@@ -57,7 +57,8 @@ export class Batalla {
             }
 
             if (guerrerosCasaA.length > 0) {
-                casaA.oro += casaB.oro;
+                /* casaA.oro += casaB.oro; */
+                casaA.oro = casaA.oro + casaB.oro;
                 casaB.oro = 0;
                 console.log(`La casa ${casaA.nombre} gana la batalla y todo el oro de ${casaB.nombre}. Oro de la casa ${casaA.nombre}: ${casaA.oro} monedas de oro.`);
             } else if (guerrerosCasaB.length > 0) {
