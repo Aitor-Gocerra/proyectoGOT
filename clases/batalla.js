@@ -6,8 +6,10 @@ export class Batalla {
 
     iniciarBatalla (casaA, casaB){
 
-        let guerrerosCasaA = casaA.guerrerosDisponibles();
-        let guerrerosCasaB = casaB.guerrerosDisponibles();
+        if(casaA instanceof Casa && casaB instanceof Casa){
+            guerrerosCasaA = casaA.guerrerosDisponibles();
+            guerrerosCasaB = casaB.guerrerosDisponibles();
+        }
 
         while(guerrerosCasaA.length > 0 && guerrerosCasaB.length > 0){
             
