@@ -14,7 +14,14 @@ export class Batalla {
 
             if(casaA instanceof Casa && casaB instanceof Casa){
                 guerrerosCasaA = casaA.guerrerosDisponibles();
+                guerrerosCasaA.forEach(guerrero =>{
+                    console.log(guerrero.nombre);  
+                })
                 guerrerosCasaB = casaB.guerrerosDisponibles();
+                guerrerosCasaB.forEach(guerrero =>{
+                    console.log(guerrero.nombre);  
+                })
+                
             }
 
             while(guerrerosCasaA.length > 0 && guerrerosCasaB.length > 0){
@@ -27,7 +34,7 @@ export class Batalla {
                     guerreroA.ataca(guerreroB);
 
                     if (guerreroB.vida <= 0) {
-                        this.#guerrerosMuertos.push(guerreroB);
+                        this.#guerrerosMuertos.push(guerreroB.convertirEnNoMuerto());
                         guerreroA.ganarExperiencia();
                         guerrerosCasaB.shift(); 
                     }else{
@@ -42,7 +49,7 @@ export class Batalla {
                     guerreroB.ataca(guerreroA);
 
                     if (guerreroA.vida <= 0) {
-                        this.#guerrerosMuertos.push(guerreroA);
+                        this.#guerrerosMuertos.push(guerreroA.convertirEnNoMuerto());
                         guerreroB.ganarExperiencia();
                         guerrerosCasaA.shift(); 
                     }else{
@@ -96,6 +103,7 @@ export class Batalla {
                     guerreroA.ataca(guerreroB);
 
                     if (guerreroB.vida <= 0) {
+                        guerreroB.convertirEnNoMuerto();
                         this.#guerrerosMuertos.push(guerreroB);
                         guerreroA.ganarExperiencia();
                         guerrerosCasaB.shift(); 
@@ -111,7 +119,7 @@ export class Batalla {
                 guerreroB.ataca(guerreroA);
 
                 if (guerreroA.vida <= 0) {
-                    this.#guerrerosMuertos.push(guerreroA);
+                    this.#guerrerosMuertos.push(guerreroA.convertirEnNoMuerto());
                     guerreroB.ganarExperiencia();
                     guerrerosCasaA.shift(); 
                 }else{
@@ -144,5 +152,9 @@ export class Batalla {
     mostrarGuerrerosMuertosEnCombate(){
         console.log("Guerreros que han muerto en combate:");
         this.#guerrerosMuertos.forEach(guerrero => console.log(`- ${guerrero.nombre}`));
+    }
+
+    get guerrerosMuertos(){
+        return this.#guerrerosMuertos;
     }
 }

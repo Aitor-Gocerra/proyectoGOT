@@ -1,5 +1,6 @@
 import { Personaje } from "../personaje.js";
 import { Arma } from "../../arma.js";
+import { NoMuerto } from "./noMuerto.js";
 
 export class Guerrero extends Personaje{
     #arma;
@@ -72,5 +73,16 @@ export class Guerrero extends Personaje{
         if(this.#nivel > nivelAnterior){
             console.log(`${this.nombre} ha subido de nivel`);
         }
+    }
+
+    convertirEnNoMuerto() {
+        const noMuerto = new NoMuerto(
+            this.nombre,
+            this.age,
+            false, // Los no-muertos no están "vivos"
+            "Caminantes Blancos",
+            this.arma // Mantiene su arma
+        );
+        return noMuerto;
     }
 }
