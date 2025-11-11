@@ -1,8 +1,6 @@
 import { Arma } from "./clases/arma.js";
 import { Casa } from "./clases/casa.js";
 import { Guerrero } from "./clases/Personaje/Especiales/guerrero.js";
-import { Rey } from "./clases/Personaje/Especiales/rey.js";
-import { Consejero } from "./clases/Personaje/Especiales/consejero.js";
 import { Batalla } from "./clases/batalla.js";
 
 // ===== CREAR CASAS =====
