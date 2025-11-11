@@ -10,7 +10,6 @@ export class NoMuerto extends Personaje {
         if(arma instanceof Arma) {
             this.#arma = arma;
         }
-        
     }
 
     get arma() {
