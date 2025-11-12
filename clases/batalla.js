@@ -6,14 +6,16 @@ export class Batalla {
 
     iniciarBatalla (casaA, casaB){
 
+        // Verifica que los parámetros sean instancias de Casa
         if(casaA instanceof Casa && casaB instanceof Casa){
             guerrerosCasaA = casaA.guerrerosDisponibles();
             guerrerosCasaB = casaB.guerrerosDisponibles();
         }
 
+        // Bucle principal de la batalla: continúa mientras haya guerreros en ambas casas
         while(guerrerosCasaA.length > 0 && guerrerosCasaB.length > 0){
             
-            const guerreroA = guerrerosCasaA[0];
+            const guerreroA = guerrerosCasaA[0]; // Selecciona el primer guerrero disponible de la casa A
             const guerreroB = guerrerosCasaB[0];
 
             // Guerrero A ataca
@@ -24,7 +26,7 @@ export class Batalla {
                 this.#guerrerosMuertos.push(guerreroB);
                 console.log(`${guerreroB.nombre} ha muerto`);
                 guerrerosCasaB.shift();
-                continue; // Pasar al siguiente turno
+                continue; // Salta al siguiente turno, el guerrero A sigue vivo y puede atacar de nuevo
             }else{
                 guerreroB.ataca(guerreroA);
                 
@@ -48,6 +50,7 @@ export class Batalla {
 
     mostrarGuerrerosMuertosEnCombate(){
         console.log("Guerreros que han muerto en combate:");
+        // Recorre la lista de guerreros muertos y muestra su nombre
         this.#guerrerosMuertos.forEach(guerrero => console.log(`- ${guerrero.nombre}`));
     }
 }
