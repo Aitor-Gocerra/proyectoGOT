@@ -14,13 +14,13 @@ export class Batalla {
 
             if(casaA instanceof Casa && casaB instanceof Casa){
                 guerrerosCasaA = casaA.guerrerosDisponibles();
-                guerrerosCasaA.forEach(guerrero =>{
+                /* guerrerosCasaA.forEach(guerrero =>{
                     console.log(guerrero.nombre);  
-                })
+                }) */
                 guerrerosCasaB = casaB.guerrerosDisponibles();
-                guerrerosCasaB.forEach(guerrero =>{
+                /* guerrerosCasaB.forEach(guerrero =>{
                     console.log(guerrero.nombre);  
-                })
+                }) */
                 
             }
 

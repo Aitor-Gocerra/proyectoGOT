@@ -1,5 +1,6 @@
 import { Personaje } from "./Personaje/personaje.js";
 import { Guerrero } from "./Personaje/Especiales/guerrero.js";
+import { Dragon } from "./Personaje/Especiales/dragon.js";
 
 export class Casa {
     #nombre;
@@ -91,12 +92,12 @@ export class Casa {
         if(otraCasa instanceof Casa){
             if(this.#nombre === otraCasa.nombre){
                 console.log(`La casa ${this.#nombre} no puede formar una alianza consigo misma`);
-            }
-            if(this.esAliada(otraCasa)){
+            }else if(this.esAliada(otraCasa)){
                 console.log(`La casa ${this.#nombre} ya es aliada`);
-            }
-            this.#alianzas.push(otraCasa);
-            otraCasa.#alianzas.push(this);
+            }else{
+                this.#alianzas.push(otraCasa);
+                otraCasa.#alianzas.push(this);
+            } 
         }
     }
 
@@ -124,20 +125,28 @@ export class Casa {
 
     guerrerosDisponibles(){
         let guerreros = this.#miembros.filter(miembro => miembro instanceof Guerrero && miembro.vivo);
-        while(guerreros.length * 100 > this.#oro){
-            guerreros.pop();
-        }
-
+        
         this.#alianzas.forEach(casaAliada =>{
             const guerrerosAliados = casaAliada.#miembros.filter(miembro => miembro instanceof Guerrero && miembro.vivo);
-            while(guerrerosAliados.length * 100 > this.#oro){
-                guerrerosAliados.pop();
-            }
             guerreros = guerreros.concat(guerrerosAliados);
         })
 
+        // Limitar por oro disponible
+        const maxGuerreros = Math.floor(this.#oro / 100);
+        guerreros = guerreros.slice(0, maxGuerreros);
+        
         this.#oro -= guerreros.length * 100;
         
         return guerreros;
+    }
+
+    aparecenDragones(){
+        let dragonesDisponibles = this.#miembros.filter(dragon => dragon instanceof Dragon && dragon.vivo);
+
+        let ejercito = this.guerrerosDisponibles();
+
+        let ejercitoDragones = ejercito.concat(dragonesDisponibles);
+
+        return ejercitoDragones;
     }
 }
