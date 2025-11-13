@@ -16,13 +16,22 @@ export class Caminante_Blanco extends Personaje {
         objetivo.recibirDaño(daño);
     }
 
-    recibirDaño(puntos, arma){
-        if(arma instanceof Arma && arma.material == "acero valyrio"){
+    recibirDaño(puntos, arma) {
+
+        if (arma && arma.tipo === "fuego") {
+            this.#vida = 0;
+            this.morir();
+            return;
+        }
+
+        if (arma instanceof Arma && arma.material === "acero valyrio") {
             this.#vida -= puntos;
-            if(this.#vida <= 0){
+            if (this.#vida <= 0) {
                 this.#vida = 0;
                 this.morir();
             }
+        } else {
+            console.log(`${this.nombre} no recibió daño.`);
         }
     }
 

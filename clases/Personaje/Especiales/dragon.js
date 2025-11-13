@@ -1,64 +1,26 @@
+import { Personaje } from "../personaje";
+export class Dragon extends Personaje {
+    #fuerza;
 
-export class Dragon {
-    #nombre;
-    #vida;
-    #vivo;
-    #poder;
-    #tipoAtaque;
-
-    constructor(nombre = "", vida = 1000, vivo = true, poder = 0, tipoAtaque = ""){
-
-        this.#nombre = nombre;
-        this.#vida = vida;
-        this.#vivo = vivo;
-        this.#poder = poder;
-        this.#tipoAtaque = tipoAtaque;
-
+    constructor(nombre, fuerza = 100) {
+        super(nombre, 0, true, "Casa Targaryen");
+        this.#fuerza = fuerza;
     }
 
-    set nombre(valor){
-        this.#nombre = valor;
-    }
-    
-    set vida(valor){
-        this.#vida = valor;
-    }
-
-    set poder(valor){
-        this.#poder = valor;
-    }
-
-    set tipoAtaque(valor){
-        this.#tipoAtaque = valor;
-    }
-
-    get nombre(){
-        return this.#nombre;
-    }
-
-    get vida(){
-        return this.#vida;
-    }
-
-    get poder(){
-        return this.#poder;
-    }
-
-    ataca(objetivo){
-        const daño = Math.floor(this.#poder * (0.7 + Math.random() * 0.6)); // Se multiplica el daño base del arma por un factor aleatorio entre 0.7 y 1.3
-        console.log(`${this.nombre} ataca a ${objetivo.nombre} causando ${daño} puntos de vida.`);
-        objetivo.recibirDaño(daño);
-    }
-
-    recibirDaño(puntos){
-        this.#vida -= puntos;
-        if(this.#vida <= 0){
-            this.#vida = 0;
-            this.morir();
+    atacar(objetivo) {
+        if (objetivo instanceof Caminante_Blanco) {
+            console.log(`${this.nombre} lanza fuego sobre ${objetivo.nombre}, que muere al instante.`);
+            objetivo.morir();
+        } else {
+            console.log(`${this.nombre} ataca a ${objetivo.nombre} causando ${this.#fuerza} puntos de daño.`);
+            if (typeof objetivo.recibirDaño === "function") {
+                objetivo.recibirDaño(this.#fuerza, { tipo: "fuego" });
+            }
         }
     }
 
-    morir(){
-        console.log(`${this.#nombre} ha muerto.`);
+    get fuerza() {
+        return this.#fuerza;
     }
 }
+

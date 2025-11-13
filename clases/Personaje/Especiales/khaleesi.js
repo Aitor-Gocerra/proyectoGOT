@@ -8,13 +8,15 @@ export class Khaleesi extends Personaje{
 
     constructor(nombre = "", age = 0, vivo = true, casa = "", dragones = [], consejero = null){
         super(nombre, age, vivo, casa);
+        this.#dragones = [];
 
-        if(dragones instanceof Dragon){
+        if (Array.isArray(dragones)) {
             dragones.forEach(dragon => {
-                this.#dragones.push(dragon);
+                if (dragon instanceof Dragon) this.#dragones.push(dragon);
             });
         }
-        if(consejero instanceof Consejero){
+
+        if (consejero instanceof Consejero) {
             this.#consejero = consejero;
         }
     }

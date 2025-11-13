@@ -5,6 +5,8 @@ import { Consejero } from "./clases/Personaje/Especiales/consejero.js";
 import { Batalla } from "./clases/batalla.js";
 import { Dragon } from "./clases/Personaje/Especiales/dragon.js";
 import { Khaleesi } from "./clases/Personaje/Especiales/khaleesi.js";
+import { Caminante_Blanco } from "./clases/Personaje/Especiales/caminante_blanco.js";
+
 // --------------------------------------------------
 // 1. Crear casas y armas
 // --------------------------------------------------
@@ -34,10 +36,10 @@ const khaleesi = new Khaleesi("Daenerys Targaryen", 29, true, "Casa Targaryen",[
 // --------------------------------------------------
 // 4. Crear ejército de Caminantes Blancos
 // --------------------------------------------------
-const caminante1 = new CaminanteBlanco("Caminante 1", 35);
-const caminante2 = new CaminanteBlanco("Caminante 2", 40);
-const caminante3 = new CaminanteBlanco("Caminante 3", 30);
-const caminante4 = new CaminanteBlanco("Caminante 4", 50);
+const caminante1 = new Caminante_Blanco("Caminante 1", 35);
+const caminante2 = new Caminante_Blanco("Caminante 2", 40);
+const caminante3 = new Caminante_Blanco("Caminante 3", 30);
+const caminante4 = new Caminante_Blanco("Caminante 4", 50);
 
 const ejercitoCaminantes = [caminante1, caminante2, caminante3, caminante4];
 
