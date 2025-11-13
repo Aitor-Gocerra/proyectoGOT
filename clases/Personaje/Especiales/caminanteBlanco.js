@@ -18,7 +18,7 @@ export class Caminante_Blanco extends Personaje {
 
     recibirDaño(puntos, arma) {
 
-        if (arma instanceof Arma && arma.tipo === "fuego") {
+        if (arma === "fuego") {
             this.#vida = 0;
             this.morir();
             return;
@@ -39,4 +39,7 @@ export class Caminante_Blanco extends Personaje {
         console.log(`${this.nombre} ha muerto.`);
     }
 
+    get vida(){
+        return this.#vida;
+    }
 }
