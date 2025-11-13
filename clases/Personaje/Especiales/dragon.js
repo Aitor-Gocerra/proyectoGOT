@@ -1,7 +1,9 @@
 import { Personaje } from "../personaje.js";
+import { Caminante_Blanco } from "./caminanteBlanco.js";
 export class Dragon extends Personaje {
     #poder;
     #arma;
+    #vida = 1000;
 
     constructor(nombre, poder = 100, arma = "fuego") {
         super(nombre, 0, true, "Casa Targaryen");
@@ -9,14 +11,21 @@ export class Dragon extends Personaje {
         this.#arma = "fuego";
     }
 
-    atacar(objetivo) {
-        if (objetivo instanceof Caminante_Blanco) {
-            console.log(`${this.nombre} lanza fuego sobre ${objetivo.nombre}, que muere al instante.`);
-            objetivo.morir();
-        } else {
-            console.log(`${this.nombre} ataca a ${objetivo.nombre} causando ${this.#poder} puntos de daño.`);
-            objetivo.recibirDaño(this.#poder, this.#arma);
+    ataca(objetivo) {
+        console.log(`${this.nombre} ataca a ${objetivo.nombre} causando ${this.#poder} puntos de daño.`);
+        objetivo.recibirDaño(this.#poder, this.#arma);
+    }
+
+    recibirDaño(puntos){
+        this.#vida -= puntos;
+        if(this.#vida <= 0){
+            this.#vida = 0;
+            this.morir();
         }
+    }
+
+    morir(){
+        console.log(`${this.nombre} ha muerto.`);
     }
 
     get poder() {

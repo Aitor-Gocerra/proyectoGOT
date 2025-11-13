@@ -5,7 +5,7 @@ export class Caminante_Blanco extends Personaje {
     #vida = 100;
     #poderHelado;
 
-    constructor(nombre = "", vivo = true, poderHelado = 0){
+    constructor(nombre = "", poderHelado = 0, vivo = true){
         super(nombre, vivo);
         this.#poderHelado = poderHelado;
     }

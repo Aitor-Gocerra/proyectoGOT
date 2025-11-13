@@ -70,7 +70,7 @@ export class Batalla {
             guerreroA.ataca(caminante);
 
             // Si el caminante muere
-            if (caminante.vida <= 0 || !caminante.vivo) {
+            if (caminante.vida <= 0) {
                 this.#guerrerosMuertos.push(caminante);
                 console.log(`${caminante.nombre} ha muerto`);
                 ejercitoCaminantes.shift();
@@ -81,7 +81,7 @@ export class Batalla {
             caminante.ataca(guerreroA);
 
             // Si el guerrero o dragón muere
-            if (guerreroA.vida <= 0 || !guerreroA.vivo) {
+            if (guerreroA.vida <= 0) {
                 this.#guerrerosMuertos.push(guerreroA);
                 console.log(`${guerreroA.nombre} ha muerto`);
                 guerrerosCasa.shift();
