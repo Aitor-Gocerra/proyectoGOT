@@ -2,11 +2,13 @@ export class Arma {
     #nombre;
     #daño;
     #tipo;
+    #material;
 
-    constructor(nombre = "", daño = 0, tipo = ""){
+    constructor(nombre = "", daño = 0, tipo = "", material = ""){
         this.#nombre = nombre;
         this.#daño = daño;
         this.#tipo = tipo;
+        this.#material = material;
     }
 
     set nombre(valor){
@@ -26,6 +28,10 @@ export class Arma {
         this.#tipo = valor;
     }
 
+    set material(valor){
+        this.#material = valor;
+    }
+
     get nombre(){
         return this.#nombre;
     }
@@ -36,6 +42,10 @@ export class Arma {
 
     get tipo(){
         return this.#tipo;
+    }
+
+    get material(){
+        return this.#material;
     }
     
 }

@@ -5,6 +5,9 @@ export class Batalla {
     #guerrerosMuertos = [];
 
     iniciarBatalla (casaA, casaB){
+        
+        let guerrerosCasaA = [];
+        let guerrerosCasaB = [];
 
         // Verifica que los parámetros sean instancias de Casa
         if(casaA instanceof Casa && casaB instanceof Casa){
@@ -45,6 +48,14 @@ export class Batalla {
             console.log(`La casa ${casaB.nombre} gana la batalla.`);
         } else {
             console.log("¡Ambas casas han caído en combate!");
+        }
+    }
+
+    batallaFinal(casa, khaleesi, ejercitoCaminantes){
+        let guerrerosCasa = [];
+
+        if(casa instanceof Casa){
+            guerrerosCasa = casa.guerrerosDisponibles();
         }
     }
 
