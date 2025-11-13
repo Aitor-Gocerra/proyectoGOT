@@ -5,7 +5,7 @@ import { Consejero } from "./clases/Personaje/Especiales/consejero.js";
 import { Batalla } from "./clases/batalla.js";
 import { Dragon } from "./clases/Personaje/Especiales/dragon.js";
 import { Khaleesi } from "./clases/Personaje/Especiales/khaleesi.js";
-import { Caminante_Blanco } from "./clases/Personaje/Especiales/caminante_blanco.js";
+import { Caminante_Blanco } from "./clases/Personaje/Especiales/caminanteBlanco.js";
 
 // --------------------------------------------------
 // 1. Crear casas y armas
@@ -17,9 +17,9 @@ const hacha = new Arma("Hacha del Norte", 40, "hierro");
 // --------------------------------------------------
 // 2. Crear guerreros de la Casa Stark
 // --------------------------------------------------
-const jon = new Guerrero("Jon Snow", 25, true, casaStark, garra);
-const tormund = new Guerrero("Tormund", 30, true, casaStark, hacha);
-const edd = new Guerrero("Edd", 28, true, casaStark, hacha);
+const jon = new Guerrero("Jon Snow", 25, true, "Stark", garra);
+const tormund = new Guerrero("Tormund", 30, true, "Stark", hacha);
+const edd = new Guerrero("Edd", 28, true, "Stark", hacha);
 casaStark.agregarMiembro(jon);
 casaStark.agregarMiembro(tormund);
 casaStark.agregarMiembro(edd);

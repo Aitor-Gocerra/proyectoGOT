@@ -1,10 +1,12 @@
-import { Personaje } from "../personaje";
+import { Personaje } from "../personaje.js";
 export class Dragon extends Personaje {
-    #fuerza;
+    #poder;
+    #arma;
 
-    constructor(nombre, fuerza = 100) {
+    constructor(nombre, poder = 100, arma = "fuego") {
         super(nombre, 0, true, "Casa Targaryen");
-        this.#fuerza = fuerza;
+        this.#poder = poder;
+        this.#arma = "fuego";
     }
 
     atacar(objetivo) {
@@ -12,15 +14,17 @@ export class Dragon extends Personaje {
             console.log(`${this.nombre} lanza fuego sobre ${objetivo.nombre}, que muere al instante.`);
             objetivo.morir();
         } else {
-            console.log(`${this.nombre} ataca a ${objetivo.nombre} causando ${this.#fuerza} puntos de daño.`);
-            if (typeof objetivo.recibirDaño === "function") {
-                objetivo.recibirDaño(this.#fuerza, { tipo: "fuego" });
-            }
+            console.log(`${this.nombre} ataca a ${objetivo.nombre} causando ${this.#poder} puntos de daño.`);
+            objetivo.recibirDaño(this.#poder, this.#arma);
         }
     }
 
-    get fuerza() {
-        return this.#fuerza;
+    get poder() {
+        return this.#poder;
+    }
+
+    get arma(){
+        return this.#arma;
     }
 }
 

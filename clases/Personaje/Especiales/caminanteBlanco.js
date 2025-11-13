@@ -18,7 +18,7 @@ export class Caminante_Blanco extends Personaje {
 
     recibirDaño(puntos, arma) {
 
-        if (arma && arma.tipo === "fuego") {
+        if (arma instanceof Arma && arma.tipo === "fuego") {
             this.#vida = 0;
             this.morir();
             return;

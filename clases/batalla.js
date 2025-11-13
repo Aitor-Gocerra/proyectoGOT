@@ -67,14 +67,14 @@ export class Batalla {
             const caminante = ejercitoCaminantes[0];
 
             // Guerrero o dragón ataca
-            guerreroA.ataca(caminante, guerreroA.arma);
+            guerreroA.ataca(caminante);
 
             // Si el caminante muere
             if (caminante.vida <= 0 || !caminante.vivo) {
                 this.#guerrerosMuertos.push(caminante);
                 console.log(`${caminante.nombre} ha muerto`);
                 ejercitoCaminantes.shift();
-                continue;
+                continue; // Siguiente turno
             }
 
             // El caminante contraataca
